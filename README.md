@@ -208,10 +208,9 @@ Este proyecto me ha permitido desarrollar habilidades en:
 
 ## 📞 **Contacto**
 
-**Desarrollador:** Tu Nombre  
-**Email:** tu-email@gmail.com  
-**LinkedIn:** [tu-perfil-linkedin]  
-**Portfolio:** [tu-portfolio]
+**Desarrollador:** David Fernandez Suco
+**Email:** dfsuco@gmail.com  
+**LinkedIn:** [[David Fernandez Suco](https://www.linkedin.com/in/david-fernandez-suco-0b568832b/)]
 
 ---
 
