@@ -21,3 +21,24 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# ===== ARCHIVOS DE SEGURIDAD =====
+# Variables de entorno con claves sensibles
+.env.local
+.env.production.local
+.env.development.local
+
+# Archivos de configuración con claves
+config/secrets.js
+config/api-keys.js
+
+# Logs que pueden contener información sensible
+*.log
+logs/
+
+# Archivos de respaldo que pueden tener datos
+*.bak
+*.backup
+
+# Variables de entorno específicas
+.env.production
