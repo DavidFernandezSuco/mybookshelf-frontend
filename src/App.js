@@ -1,17 +1,18 @@
-// ===== APP.JS SIMPLIFICADO - SOLO DEFAULT IMPORTS =====
+// ===== APP.JS COMPLETO - ACTUALIZADO CON ADDBOOK REAL =====
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Layout from "./components/common/Layout";
 
-// ===== IMPORTS SIMPLIFICADOS - SOLO PÁGINAS CRÍTICAS =====
+// ===== IMPORTS DE PÁGINAS REALES =====
 import Dashboard from "./pages/Dashboard";
 import Books from "./pages/Books";
+import AddBook from "./pages/AddBook"; // ← AHORA ES REAL Y FUNCIONAL
 
 import "./App.css";
 
-// ===== TEMA (mantienes el mismo) =====
+// ===== TEMA MATERIAL-UI COMPLETO =====
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -136,10 +137,10 @@ const theme = createTheme({
   },
 });
 
-// ===== PLACEHOLDER COMPONENTES TEMPORALES =====
-// (Para evitar problemas de imports mientras creamos los archivos)
+// ===== COMPONENTES PLACEHOLDER TEMPORALES =====
+// Solo para páginas que aún no hemos implementado
 
-const PlaceholderPage = ({ title, emoji }) => (
+const PlaceholderPage = ({ title, emoji, phase }) => (
   <div
     style={{
       padding: "24px",
@@ -162,23 +163,55 @@ const PlaceholderPage = ({ title, emoji }) => (
       >
         {title}
       </h4>
-      <p style={{ margin: 0, color: "#9aa0a6" }}>
-        Página en desarrollo - Phase 3+
+      <p
+        style={{
+          margin: 0,
+          color: "#9aa0a6",
+          marginBottom: "16px",
+        }}
+      >
+        Página en desarrollo - {phase}
       </p>
+      <div
+        style={{
+          backgroundColor: "#28292c",
+          border: "1px solid #5f6368",
+          borderRadius: "8px",
+          padding: "16px",
+          fontSize: "0.75rem",
+          color: "#9aa0a6",
+          maxWidth: "400px",
+        }}
+      >
+        <div style={{ color: "#8ab4f8", marginBottom: "8px" }}>
+          📋 Status: Placeholder activo
+        </div>
+        <div>• Phase 3: ✅ AddBook funcional</div>
+        <div>• Próximo: Books Page con datos reales</div>
+      </div>
     </div>
   </div>
 );
 
-// Componentes placeholder
-const AddBook = () => <PlaceholderPage title="Añadir Libro" emoji="➕" />;
-const Authors = () => <PlaceholderPage title="Autores" emoji="👥" />;
-const Genres = () => <PlaceholderPage title="Géneros" emoji="🏷️" />;
-const Analytics = () => <PlaceholderPage title="Analytics" emoji="📊" />;
+// Componentes placeholder específicos
+const Authors = () => (
+  <PlaceholderPage title="Autores" emoji="👥" phase="Phase 4" />
+);
+const Genres = () => (
+  <PlaceholderPage title="Géneros" emoji="🏷️" phase="Phase 4" />
+);
+const Analytics = () => (
+  <PlaceholderPage title="Analytics" emoji="📊" phase="Phase 5" />
+);
 const NotFound = () => (
-  <PlaceholderPage title="Página No Encontrada" emoji="📚❓" />
+  <PlaceholderPage
+    title="Página No Encontrada"
+    emoji="📚❓"
+    phase="Error 404"
+  />
 );
 
-// ===== APP COMPONENT =====
+// ===== COMPONENTE PRINCIPAL APP =====
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -186,25 +219,32 @@ function App() {
       <Router>
         <Layout>
           <Routes>
-            {/* Página principal - Dashboard */}
+            {/* ===== PÁGINAS FUNCIONALES ===== */}
+            {/* Dashboard - Totalmente funcional con datos reales */}
             <Route path="/" element={<Dashboard />} />
 
-            {/* Gestión de Libros */}
+            {/* Books - Placeholder por ahora, próxima implementación */}
             <Route path="/books" element={<Books />} />
+
+            {/* AddBook - ¡RECIÉN IMPLEMENTADO! Totalmente funcional */}
             <Route path="/books/add" element={<AddBook />} />
+
+            {/* Book detail - Usará el componente Books por ahora */}
             <Route path="/books/:id" element={<Books />} />
 
-            {/* Gestión de Autores */}
+            {/* ===== PÁGINAS EN DESARROLLO ===== */}
+            {/* Authors - Phase 4 */}
             <Route path="/authors" element={<Authors />} />
             <Route path="/authors/:id" element={<Authors />} />
 
-            {/* Gestión de Géneros */}
+            {/* Genres - Phase 4 */}
             <Route path="/genres" element={<Genres />} />
 
-            {/* Analytics Avanzado */}
+            {/* Analytics - Phase 5 */}
             <Route path="/analytics" element={<Analytics />} />
 
-            {/* Página 404 */}
+            {/* ===== ERROR HANDLING ===== */}
+            {/* 404 Page */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
